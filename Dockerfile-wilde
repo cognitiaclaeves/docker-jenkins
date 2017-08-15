@@ -1,0 +1,10 @@
+from jenkins/jenkins:2.73
+
+user root
+
+copy docker-engine.key /tmp/docker-engine.key
+# apt-key add /tmp/docker-engine.key
+
+run apt-get update && echo "deb https://apt.dockerproject.org/repo debian-stretch main" > /etc/apt/sources.list.d/docker.list \
+    && apt-get install apt-transport-https && apt-key add /tmp/docker-engine.key && apt-get update && apt-get install -y docker-engine
+
